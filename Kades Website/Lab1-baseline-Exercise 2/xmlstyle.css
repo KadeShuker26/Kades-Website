@@ -1,0 +1,73 @@
+body, xml-rules, rule, title, heading, description, example {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+xml-rules {
+    display: block;
+    width: 100%;
+    background-color: white;
+}
+
+rule, title, heading, description, example {
+    display: block;
+}
+
+title {
+    display: block;
+    background-color: white;
+    font-size: 2em;
+}
+
+heading{
+    font-size: 1.2em;
+    padding: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+description {
+    padding: 2px;
+    margin-bottom: 5px;
+    font-size: 1.0em;
+}
+
+example {
+    padding: 2px;
+    margin-bottom: 20px;
+    font-size: 1.0em;
+    color: blue;
+    font-style: italic;
+}
+
+
+xml-rules
+
+    rule {
+
+        margin:2px;
+        border: 2px solid black;
+        background-color: #EAEAEA;
+    }
+
+    title {
+        width:90%;
+    }
+
+@media screen and (min-width: 768px){
+
+    xml-rules{
+    display: flex;
+    flex-flow: row wrap;
+    }
+
+    rule {
+        width: 45%;
+        margin:2px;
+        border: 2px solid black;
+        background-color: white;
+    }
+
+    title {
+        width:90%;
+    }
+}
