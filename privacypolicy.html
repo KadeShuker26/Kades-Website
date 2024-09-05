@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1</title>
+
+    <!-- Insert Bootstrap CSS here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Insert Bootstrap icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+      <!-- Insert Bootstrap Javascript and JQuery -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Our own styles -->
+    <style>
+        /* Use CSS variable */
+        :root {
+            --navbar-color: #DAF7A6;
+            --showcase-color: #000000;
+            --bio-color: #FFC300;
+            --webtech-color: #EC7063;
+            --competence-color: #9CDA0D;
+            --statement-color: #F27A09;
+        }
+
+        .background-section {
+            position: relative;
+            min-height: 20vh;
+            overflow: hidden;
+        }
+
+        .background-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(Images/wolf.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            /* Adjust the blur amount as needed */
+            z-index: -1;
+            /* Ensure this element is behind the text */
+        }
+
+        .bg-text {
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            border: 3px solid #f1f1f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 80%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .flip-box {
+            background-color: transparent;
+            width: 100%;
+            height: 300px;
+            perspective: 1000px;
+            /* Remove this if you don't want the 3D effect */
+        }
+
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-box:hover .flip-box-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-box-front,
+        .flip-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #4b9ecf;
+            /* Add border property */
+        }
+
+        .flip-box-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-box-back {
+            background-color: #2980b9;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flip-box-image {
+            border-radius: 50%;
+            width: 80px;
+            /* Adjust size as needed */
+            height: 80px;
+            /* Adjust size as needed */
+            object-fit: cover;
+            /* Ensures the image covers the circle */
+        }
+
+        .bg-primary {
+            background-color: #B1E2E7 !important;
+        }
+
+        .bg-secondary {
+            background-color: #B1E2E7 !important;
+        }
+
+        .bg-success {
+            background-color: #B1E2E7 !important;
+        }
+
+        .active-button {
+            background-color: rgb(255, 193, 30) !important;
+            border-color: black !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Add the search area containing search box and search button -->
+    <div class="collapse" id="collapseSearchBox">
+        <form class="w-100">
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder="Search...">
+                <button class="btn btn-outline-success" type="submit">SEARCH</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Navbar area -->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background: linear-gradient(to bottom, #f2fce0,#DAF7A6);">
+        <div class="container-fluid">
+            <!-- Tagline - insert a globe icon in front of the tagline -->
+            <div class="d-flex align-items-center">
+                <i class="bi bi-globe p-2 fs-3"></i>
+                <a class="navbar-brand mb-0" href="index.html">ITWD6.408</a>
+            </div>
+
+            <!-- Flex container for search icon and sandwich menu icon -->
+            <div class="d-flex ms-auto">
+                <!-- Insert the search icon button: ONLY SHOWN ON SMALL DEVICES, hidden in big devices -->
+                <button class="btn d-inline d-lg-none me-2" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSearchBox" aria-expanded="false" aria-controls="collapseSearchBox">
+                    <span class="bi bi-search fs-3"></span>
+                </button>
+
+                <!-- Button: text on it is a sandwich icon -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Collapse navbar -->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup"
+                style="z-index: 3;">
+                <div class="navbar-nav w-50 float-end" style="background: linear-gradient(to bottom, #f2fce0,#DAF7A6);">
+                    <a class="nav-link text-end" aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link text-end " href="forms.html">FORMS</a>
+                    <a class="nav-link text-end" href="xml.html">XML/RSS</a>
+                    <a class="nav-link text-end" href="javascript.html">JAVASCRIPT</a>
+                    <a class="nav-link text-end" href="research.html">RESEARCH</a>
+                </div>
+            </div>
+
+            <!-- Insert the search icon button: ONLY SHOWN ON BIG DEVICES, hidden in small devices -->
+            <button class="btn d-none d-lg-inline" type="button" id="searchToggleDesktop">
+                <span class="bi bi-search fs-3"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main area -->
+    <main class="container my-5">
+        <h1 class="text-center">Privacy Policy</h1>
+        <p class="mt-4 me-4">
+            This Privacy Policy outlines how we comply with New Zealand's Privacy Act 2020, which governs how personal information is collected, used, stored, and shared.
+        </p>
+    
+        <h2>1. Information We Collect</h2>
+        <p class="me-4">
+            We collect personal information when you interact with our services, including but not limited to:
+        </p>
+        <ul class="me-4">
+            <li>Your name and contact information</li>
+            <li>Details about your interactions with our website</li>
+            <li>Any information you provide through forms or other means</li>
+        </ul>
+    
+        <h2>2. How We Use Your Information</h2>
+        <p class="me-4">
+            We use your personal information only for the purposes for which it was collected. This may include:
+        </p>
+        <ul class="me-4">
+            <li>Providing and improving our services</li>
+            <li>Communicating with you regarding your account or our services</li>
+            <li>Complying with legal obligations</li>
+        </ul>
+    
+        <h2>3. Sharing of Your Information</h2>
+        <p class="me-4">
+            We do not share your personal information with third parties unless it is necessary to provide our services, required by law, or otherwise permitted under the Privacy Act 2020.
+        </p>
+    
+        <h2>4. Security of Your Information</h2>
+        <p class="me-4">
+            We take reasonable steps to protect your personal information from unauthorized access, modification, disclosure, and misuse. However, please be aware that no data transmission over the internet can be guaranteed to be completely secure.
+        </p>
+    
+        <h2>5. Accessing and Correcting Your Information</h2>
+        <p class="me-4">
+            You have the right to access and request correction of any personal information we hold about you. If you wish to exercise this right, please contact us using the details below.
+        </p>
+    
+        <h2>6. Contact Information</h2>
+        <p class="me-4">
+            If you have any questions about this Privacy Policy or how we handle your personal information, please contact us at:
+        </p>
+        <p class="me-4">
+            Email: privacy@yourcompany.co.nz<br>
+            Phone: +64 9 123 4567
+        </p>
+    </main>
+
+    <!-- Footer area -->
+    <footer style="min-height: 10vh; background: linear-gradient(to bottom, #f2fce0,#DAF7A6);"
+        class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center w-100 mb-2">
+            <!-- Social Media Icons -->
+            <div class="d-flex align-items-center mb-2 mb-md-0 ps-3 mt-3 mt-md-0">
+                <a href="https://www.facebook.com/" class="me-2"><span class="fs-1 bi bi-facebook"></span></a>
+                <a href="https://www.linkedin.com/" class="me-2"><span class="fs-1 bi bi-linkedin"></span></a>
+                <a href="https://www.instagram.com/" class="me-2"><span class="fs-1 bi bi-instagram"></span></a>
+            </div>
+            <!-- Centered Text -->
+            <div class="text-center mx-3 mb-2 mb-md-0 d-flex align-items-center mt-md-0">@2024 KADE SHUKER</div>
+            <!-- Privacy Policy for Desktop -->
+            <div class="d-none d-md-block text-end pe-3 align-self-center" style="color: #00f;">
+                <a href="privacypolicy.html" style="color: #00f; text-decoration: none;">PRIVACY POLICY</a>
+            </div>
+            
+            <!-- Privacy Policy for Mobile -->
+            <div class="d-block d-md-none w-100 text-end pe-3 position-relative"
+                style="top: -2rem; margin-bottom: 0; color: #00f">PRIVACY POLICY</div>
+        </div>
+    </footer>
+
+    <!-- Insert Bootstrap Javascript and JQuery -->
+    <script>
+        $(document).ready(function () {
+            // Toggle search bar
+            $('#searchToggle, #searchToggleDesktop').on('click', function () {
+                $('#collapseSearchBox').collapse('toggle');
+            });
+
+            // Auto-close the navbar when a link is clicked (for mobile devices)
+            $('.navbar-nav .nav-link').on('click', function () {
+                $('.navbar-collapse').collapse('hide');
+            });
+
+            // Ensure that clicking outside the search bar closes it
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.navbar').length) {
+                    $('#collapseSearchBox').collapse('hide');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
