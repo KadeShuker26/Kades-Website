@@ -1,0 +1,32 @@
+$.ajax({
+    method: 'GET',
+    url: 'xml-rules.xml',
+    dataType: 'xml',
+    error: function () {
+        alert('ERROR! Not on live server.');
+    },
+    success: function (data) {
+        // Loop through all rules and extract heading, description, examples.
+        $(data).find('rule').each(function () {
+            // Find "heading", "description", "example" tags
+            var heading = $(this).find('heading').text();
+            var description = $(this).find('description').text();
+            var example = $(this).find('example').text();
+            
+            // Construct the ruleBox HTML
+            var ruleBox = `
+                <div class="col-12 col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${heading}</h5>
+                            <p class="card-text">${description}</p>
+                            <p class="card-text"><small>${example}</small></p>
+                        </div>
+                    </div>
+                </div>`;
+            
+            // Append the ruleBox to the #xml-rules element
+            $('#xml-rules').append(ruleBox);
+        });
+    },
+});
